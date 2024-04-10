@@ -1,0 +1,39 @@
+;; Done
+
+(module sn-utils racket
+   (require racket/string)
+
+  (provide sn-dict-ks-vs
+           sn-line->entry
+           sn-list->dict
+           )
+
+ 
+  ;; utils
+  ;; [k] [v] -> [(k,v)]
+  ;; Easy
+  (define (sn-dict-ks-vs ks vs)  
+   (map cons ks vs))       ;; map function has been used to apply on (ks and vs) elements cons functions as there to join it as (ks.vs)
+
+  ;; Medium
+  ;; str -> (a,[a])
+  (define (sn-line->entry values)
+    (let ((lst (string-split values))) ;;token has been defined to split a list
+      (cons (string->symbol (car lst))
+       (map string->symbol (cdr lst))))) ;; cons functions joins (first element) and (rest element) from a list 
+
+  ;; [(a,b)] -> [(a,b)] 
+  ;; Easy
+  (define (sn-list->dict es)
+   (map (lambda (entry)
+          (cons (car entry) (cdr entry)))
+        es))                           ;; It is representing/ printing  a keys and values or a list.
+
+)
+  
+  ;;
+  ;(define (string-to-dict-entry str)
+  ; str)
+
+  
+  
